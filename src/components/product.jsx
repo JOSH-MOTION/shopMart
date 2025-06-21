@@ -49,7 +49,7 @@ const Product = () => {
               to={`/product/${product.id}`}
               key={product.id}
               className="block bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
-            >
+            >  
               <img
                 src={product.image}
                 alt={product.name}
@@ -65,6 +65,5 @@ const Product = () => {
       </div>
     </section>
   );
-
 };
 export default Product;
