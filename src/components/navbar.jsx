@@ -1,7 +1,8 @@
 // src/components/Navbar.jsx
 import { useState } from 'react';
 import { ShoppingCart, Search } from 'lucide-react';
-import logo from '../assets/shopper.png'; // Your logo in assets folder
+import logo from '../assets/shopper.png'; 
+import  { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -27,20 +28,19 @@ const Navbar = () => {
           <div className="hidden md:flex items-center">
             <ul className="flex space-x-8">
               <li>
-                <a
+                <Link to="/"
                   href="#"
                   className="text-gray-700 hover:text-gray-900 font-medium"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link to="/product"
                   className="text-gray-700 hover:text-gray-900 font-medium"
                 >
                   Products
-                </a>
+                </Link>
               </li>
               <li>
                 <a
