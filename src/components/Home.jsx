@@ -60,7 +60,7 @@ const Home = () => {
             <p className="text-lg text-gray-700 mb-6">
               Discover premium furniture at unbeatable prices. Transform your home with our exclusive collection today!
             </p>
-            <a href="#" className="inline-block bg-blue-600 text-white font-semibold px-8 py-3 rounded-full hover:bg-blue-700 transition">
+            <a href="#" className="inline-block bg-orange-400 text-white font-semibold px-8 py-3 rounded-full hover:bg-blue-700 transition">
               Shop Now
             </a>
           </div>
@@ -70,7 +70,7 @@ const Home = () => {
       {/* Product Showcase */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-blue-600 mb-2">POPULAR PRODUCTS</h2>
+          <h2 className="text-3xl font-bold text-orange-400 mb-2">POPULAR PRODUCTS</h2>
           <p className="text-gray-600 mb-10">
             Explore top categories our customers love the most!
           </p>
