@@ -43,20 +43,18 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link to="/about"
                   className="text-gray-700 hover:text-gray-900 font-medium"
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link to="/contact"
                   className="text-gray-700 hover:text-gray-900 font-medium"
                 >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
