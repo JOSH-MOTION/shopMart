@@ -1,6 +1,6 @@
 // src/components/Details.jsx
 import { useParams } from 'react-router-dom';
-import { useLocation } from 'react-router-dom'; // To access state if needed later
+import { useCart } from '../context/CartContext';
 import furniture from '../assets/furniture.jpg';
 import sofa1 from '../assets/sofa1.jpg';
 import sofa2 from '../assets/sofa2.jpg';
@@ -25,24 +25,29 @@ import desk from '../assets/desk.jpg';
 
 const Details = () => {
   const { id } = useParams();
+  const { addToCart } = useCart();
 
-  // Single source of truth for product data (passed or accessed globally in a real app)
   const products = [
     { id: '1', name: 'Modern Sofa', price: '$299', image: sofa1, description: 'A sleek and comfortable modern sofa perfect for any living room.' },
     { id: '2', name: 'Classic Dining Table', price: '$349', image: table1, description: 'A sturdy classic dining table with elegant design.' },
-    { id: '3', name: 'Wooden Chair', price: '$99',  image: chair1, description: 'A simple yet durable wooden chair for dining or office use.' },
-    { id: '4', name: 'King Size Bed', price: '$599', image: bed1 , description: 'A luxurious king-size bed with a solid wood frame.' },
-    { id: '5', name: 'Office Desk', price: '$199',  image: desk, description: 'A modern office desk with ample storage space.' },
+    { id: '3', name: 'Wooden Chair', price: '$99', image: chair1, description: 'A simple yet durable wooden chair for dining or office use.' },
+    { id: '4', name: 'King Size Bed', price: '$599', image: bed1, description: 'A luxurious king-size bed with a solid wood frame.' },
+    { id: '5', name: 'Office Desk', price: '$199', image: desk, description: 'A modern office desk with ample storage space.' },
     { id: '6', name: 'Leather Recliner', price: '$449', image: Leather, description: 'A premium leather recliner for ultimate relaxation.' },
-    { id: '7', name: 'Coffee Table', price: '$149',  image: table2 , description: 'A stylish coffee table with a glass top.' },
-    { id: '8', name: 'Bookshelf', price: '$129',  image: decore3, description: 'A tall bookshelf with adjustable shelves.' },
-    { id: '9', name: 'Dining Chair Set', price: '$249', image: table3 , description: 'A set of four elegant dining chairs.' },
-    { id: '10', name: 'Nightstand', price: '$89', image: lightning2 , description: 'A compact nightstand with a drawer.' },
+    { id: '7', name: 'Coffee Table', price: '$149', image: table2, description: 'A stylish coffee table with a glass top.' },
+    { id: '8', name: 'Bookshelf', price: '$129', image: decore3, description: 'A tall bookshelf with adjustable shelves.' },
+    { id: '9', name: 'Dining Chair Set', price: '$249', image: table3, description: 'A set of four elegant dining chairs.' },
+    { id: '10', name: 'Nightstand', price: '$89', image: lightning2, description: 'A compact nightstand with a drawer.' },
     { id: '11', name: 'Sectional Sofa', price: '$699', image: sofa3, description: 'A spacious sectional sofa for large families.' },
-    { id: '12', name: 'TV Stand', price: '$179',image: decore2, description: 'A modern TV stand with storage compartments.' },
+    { id: '12', name: 'TV Stand', price: '$179', image: decore2, description: 'A modern TV stand with storage compartments.' },
   ];
 
   const product = products.find((p) => p.id === id) || { name: 'Product Not Found', price: '$0', image: 'https://via.placeholder.com/400x300', description: 'Product details unavailable.' };
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    alert(`${product.name} added to cart!`);
+  };
 
   return (
     <section className="py-12 bg-white">
@@ -57,7 +62,10 @@ const Details = () => {
           <div className="w-full md:w-1/2">
             <p className="text-gray-700 mb-4"><strong>Price:</strong> {product.price}</p>
             <p className="text-gray-700">{product.description}</p>
-            <button className="mt-6 bg-blue-600 text-white font-semibold px-6 py-2 rounded-full hover:bg-blue-700 transition-colors">
+            <button
+              onClick={handleAddToCart}
+              className="mt-6 bg-blue-600 text-white font-semibold px-6 py-2 rounded-full hover:bg-blue-700 transition-colors"
+            >
               Add to Cart
             </button>
           </div>

@@ -1,67 +1,58 @@
 // src/components/Navbar.jsx
-import { useState } from 'react';
+import { useSearch } from '../context/SearchContext';
+import { useCart } from '../context/CartContext';
+import { Link } from 'react-router-dom';
 import { ShoppingCart, Search } from 'lucide-react';
-import logo from '../assets/shopper.png'; 
-import  { Link } from 'react-router-dom';
+import logo from '../assets/shopper.png';
 
 const Navbar = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const { searchQuery, setSearchQuery } = useSearch();
+  const { cartCount } = useCart();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      // Implement search logic or redirect
-      console.log('Searching for:', searchQuery);
-    }
+    // Search is handled via state change
   };
 
   return (
-    <nav className="sticky top-0 z-50 shadow-sm bg-orange-200 ">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+    <nav className="sticky top-0 z-50 shadow-sm bg-orange-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Left Section - Logo */}
           <div className="flex-shrink-0">
-            <img src={logo} alt="E-commerce Logo" className="h-8 w-auto" />
+            <Link to="/">
+              <img src={logo} alt="E-commerce Logo" className="h-8 w-auto" />
+            </Link>
           </div>
-
-          {/* Center Section - Navigation Links */}
           <div className="hidden md:flex items-center">
             <ul className="flex space-x-8">
               <li>
-                <Link to="/"
-                  href="#"
-                  className="text-gray-700 hover:text-gray-900 font-medium"
-                >
+                <Link to="/" className="text-gray-700 hover:text-gray-900 font-medium">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/product"
-                  className="text-gray-700 hover:text-gray-900 font-medium"
-                >
+                <Link to="/product" className="text-gray-700 hover:text-gray-900 font-medium">
                   Products
                 </Link>
               </li>
               <li>
-                <Link to="/about"
-                  className="text-gray-700 hover:text-gray-900 font-medium"
-                >
+                <Link to="/about" className="text-gray-700 hover:text-gray-900 font-medium">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="/contact"
-                  className="text-gray-700 hover:text-gray-900 font-medium"
-                >
+                <Link to="/contact" className="text-gray-700 hover:text-gray-900 font-medium">
                   Contact
+                </Link>
+              </li>
+              <li>
+                <Link to="/cart" className="text-gray-700 hover:text-gray-900 font-medium">
+                  Cart
                 </Link>
               </li>
             </ul>
           </div>
-
-          {/* Right Section - Search and Cart */}
           <div className="flex items-center space-x-4">
-            {/* Search Bar */}
             <form onSubmit={handleSearch} className="relative">
               <input
                 type="text"
@@ -76,22 +67,17 @@ const Navbar = () => {
                 size={20}
               />
             </form>
-
-            {/* Cart Icon */}
-            <a href="#" className="relative">
+            <Link to="/cart" className="relative">
               <ShoppingCart className="text-gray-700" size={24} />
-              {/* Cart count badge - implement with state management in production */}
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                0
+                {cartCount}
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu - Add toggle logic if needed */}
       <div className="md:hidden">
-        {/* Implement mobile menu with hamburger icon if required */}
+        {/* Mobile menu placeholder */}
       </div>
     </nav>
   );
